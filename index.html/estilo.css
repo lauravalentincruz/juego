@@ -1,0 +1,68 @@
+/* Estilo general del cuerpo */
+body {
+    font-family: 'Arial', sans-serif;
+    background: #e0e0e0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+/* Contenedor del juego */
+.game-container {
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    max-width: 400px;
+    width: 100%;
+    text-align: center;
+}
+
+/* Estilo para los encabezados */
+h1 {
+    color: #333;
+    margin-bottom: 10px;
+}
+
+/* Estilo para los párrafos */
+p {
+    font-size: 18px;
+    color: #666;
+}
+
+/* Estilo para el input */
+input[type="number"] {
+    width: calc(100% - 22px);
+    padding: 10px;
+    margin: 10px 0;
+    border: 2px solid #ddd;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+/* Estilo para el botón */
+button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background: #007bff;
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+/* Estilo del botón al pasar el cursor */
+button:hover {
+    background: #0056b3;
+}
+
+/* Estilo para el resultado */
+#resultado {
+    margin-top: 20px;
+    font-size: 18px;
+    font-weight: bold;
+    color: #e74c3c;
+}

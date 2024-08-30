@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adivina el Número</title>
+   <link rel="stylesheet" href="estilo.css">
+</head>
+<body>
+    <div id="game-container">
+        <p id="intro" class="message">¡Bienvenido al juego 'Adivina el Número'! Estoy pensando en un número entre 1 y 100.</p>
+        <p id="feedback" class="message feedback">Tienes 10 intentos para adivinarlo.</p>
+        <p id="result" class="message result"></p>
+        <input type="number" id="guess" min="1" max="100" placeholder="Introduce tu número">
+        <button onclick="makeGuess()">Enviar intento</button>
+    </div>
+
+    <script>
+        let numeroSecreto;
+        let intentosRestantes;
+        let numerosProbados = [];
+
+        function startGame() {
+            numeroSecreto = Math.floor(Math.random() * 100) + 1;
+            intentosRestantes = 10;
+            numerosProbados = [];
+            document.getElementById('intro').textContent = "Estoy pensando en un número entre 1 y 100.";
+            document.getElementById('feedback').textContent = "Tienes 10 intentos para adivinarlo.";
+            document.getElementById('result').textContent = "";
+            document.getElementById('guess').value = "";
+        }
+
+        function makeGuess() {
+            const input = document.getElementById('guess');
+            const intento = parseInt(input.value, 10);
+            const resultElement = document.getElementById('result');
+
+            if (isNaN(intento) || intento < 1 || intento > 100) {
+                resultElement.textContent = "Por favor, introduce un número entre 1 y 100.";
+                resultElement.className = "sigue intentando";
+                return;
+            }
+
+            if (numerosProbados.includes(intento)) {
+                resultElement.textContent = "Ya has probado este número. Intenta con otro.";
+                resultElement.className = "message error";
+                return;
+            }
+
+            numerosProbados.push(intento);
+
+            if (intento === numeroSecreto) {
+                resultElement.textContent = `¡Felicidades! Has adivinado el número ${numeroSecreto} en ${11 - intentosRestantes} intentos.`;
+                resultElement.className = "message result";
+                return;
+            }
+
+            intentosRestantes--;
+
+            if (intentosRestantes === 0) {
+                resultElement.textContent = `¡Se te acabaron los intentos! El número correcto era ${numeroSecreto}.`;
+                resultElement.className = "message result";
+                return;
+            }
+
+            if (intento < numeroSecreto) {
+                resultElement.textContent = `El número es más alto. Te quedan ${intentosRestantes} intentos.`;
+            } else {
+                resultElement.textContent = `El número es más bajo. Te quedan ${intentosRestantes} intentos.`;
+            }
+
+            resultElement.className = "message feedback";
+        }
+
+        window.onload = startGame;
+    </script>
+</body>
+</html>
